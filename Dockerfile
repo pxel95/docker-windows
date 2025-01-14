@@ -29,7 +29,9 @@ RUN set -eu && \
 COPY --chmod=755 ./src /run/
 COPY --chmod=755 ./assets /run/assets
 
-ADD --chmod=664 https://github.com/qemus/virtiso-whql/releases/download/v1.9.44-0/virtio-win-1.9.44.tar.xz /drivers.txz
+#解决无法访问github问题
+#ADD --chmod=664 https://github.com/qemus/virtiso-whql/releases/download/v1.9.44-0/virtio-win-1.9.44.tar.xz /drivers.txz
+COPY --chmod=664 ./download/virtio-win-1.9.44.tar.xz /drivers.txz
 
 FROM dockurr/windows-arm:${VERSION_ARG} AS build-arm64
 FROM build-${TARGETARCH}
